@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+				   assembly="RemixBoard.Core"
+				   namespace="RemixBoard.Core">
+  <class name="Job" table="Job" lazy="false">
+    <id name="Id">
+      <generator  class="identity"/>
+    </id>
+   
+    <property name="Entreprise" />
+
+    <property name="Origine"/>
+    <property name="Description"/>
+
+    <property name="EntrepriseWebSite" />
+    <property name="TypeDeContrat" />
+    <property name="DateDeCréation" column="DateDeCreation" />
+    <property name="Expérience" column="Experience" />
+    <property name="Etudes" />
+    <property name="Titre" />
+    <property name="Url" />
+    <property name="Localisation" />
+    <property name="Favoris" />
+    <list name="Tags" table="Tags" fetch="subselect" lazy="false">
+      <key column="JobId" />
+      <index column="IndexTag" />
+      <element column="Tag" type="string" />
+    </list>
+  </class>
+</hibernate-mapping>

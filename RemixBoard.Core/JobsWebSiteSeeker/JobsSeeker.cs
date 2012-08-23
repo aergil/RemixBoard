@@ -1,0 +1,43 @@
+﻿using System.Collections.Generic;
+
+namespace RemixBoard.Core.JobsWebSiteSeeker
+{
+    public class JobsSeeker
+    {
+        public static JobsSeeker Instance {
+            get { return instance ?? (instance = new JobsSeeker()); }
+        }
+
+        public WebRequestJSON WebRequest {
+            get { return webRequest ?? (webRequest = new WebRequestJSON()); }
+            set { webRequest = value; }
+        }
+
+        protected JobsSeeker() {
+            jobDeserializers = new List<JobDeserializer> {
+                                                             new RemixJobDeserializer(),
+                                                             new ExpressJobDeserializer()
+                                                         };
+        }
+
+        public virtual IList<Job> GetAll() {
+            var jobs = new List<Job>();
+
+            foreach (var jobDeserializer in jobDeserializers) {
+                Log.Info(this, string.Format("Récupération des données de {0}", jobDeserializer.SiteName));
+                jobs.AddRange(jobDeserializer.Deserialize(WebRequest.Get(jobDeserializer.UriSite)));
+            }
+
+            return jobs;
+        }
+
+        public void RefreshEntrepotJobs() {
+            Entrepots.Jobs.AddRange(GetAll());
+        }
+
+        private static JobsSeeker instance;
+
+        private IList<JobDeserializer> jobDeserializers;
+        private WebRequestJSON webRequest;
+    }
+}
