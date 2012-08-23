@@ -8,8 +8,8 @@ namespace RemixBoard.Core.JobsWebSiteSeeker
             get { return instance ?? (instance = new JobsSeeker()); }
         }
 
-        public WebRequestJSON WebRequest {
-            get { return webRequest ?? (webRequest = new WebRequestJSON()); }
+        public WebRequestJson WebRequest {
+            get { return webRequest ?? (webRequest = new WebRequestJson()); }
             set { webRequest = value; }
         }
 
@@ -38,6 +38,6 @@ namespace RemixBoard.Core.JobsWebSiteSeeker
         private static JobsSeeker instance;
 
         private IList<JobDeserializer> jobDeserializers;
-        private WebRequestJSON webRequest;
+        private WebRequestJson webRequest;
     }
 }

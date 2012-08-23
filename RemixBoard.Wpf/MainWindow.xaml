@@ -1,7 +1,7 @@
 ﻿<Window x:Class="RemixBoard.Wpf.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Wpf="clr-namespace:RemixBoard.Wpf"
-        Title="Remix-Board" Height="499" Width="843" Name="RemixBoard">
+        xmlns:Core="clr-namespace:RemixBoard.Core;assembly=RemixBoard.Core" Title="Remix-Board" Height="499" Width="843" Name="RemixBoard">
     <Window.Resources>
         <Style x:Key="TitleLabelStyle" TargetType="{x:Type Label}">
             <Setter Property="FontSize" Value="24" />
@@ -61,7 +61,7 @@
             <Label Content="{Binding}" FontStyle="Italic"    />
         </DataTemplate>
 
-        <DataTemplate x:Key="JobTemplate">
+        <DataTemplate x:Key="JobTemplate" DataType="Core:Job">
             <StackPanel  Style="{DynamicResource JobPanel}" 
                          Orientation="Vertical" HorizontalAlignment="Stretch" Margin="1,1,1,1" 
                          MouseLeftButtonDown="JobTemplate_Selected" >
@@ -113,7 +113,7 @@
                     HorizontalAlignment="Left"
                     Name="cbAfficherFavoris" 
                     Margin="196,21,0,6" 
-                    Checked="AfficherFavoris_checked" Unchecked="AfficherFavoris_Unchecked" />
+                    Checked="AfficherFavoris_Checked" Unchecked="AfficherFavoris_Unchecked" />
                     <Label  
                     HorizontalAlignment="Left"
                     Content="Favoris" Margin="207,13,0,-4" Foreground="DimGray" />
@@ -128,7 +128,7 @@
                     <TextBox  Style="{DynamicResource MotsClefsTextBox}"
                     HorizontalAlignment="Left"
                     Name="tbMotsClefs"   
-                    KeyUp="tbMotsClefs_KeyUp"  PreviewKeyDown="tbMotsClefs_KeyUp" 
+                    KeyUp="TbMotsClefs_KeyUp"  PreviewKeyDown="TbMotsClefs_KeyUp" 
                     Margin="382,0,0,5" />
                     <TextBox  Style="{DynamicResource VilleTextBox}"
                     HorizontalAlignment="Left"

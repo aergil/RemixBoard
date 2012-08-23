@@ -1,7 +1,6 @@
 using NHibernate;
-using RemixBoard.Datas.Infrastructure;
 
-namespace RemixBoard.Datas
+namespace RemixBoard.Datas.Infrastructure
 {
     public class RealTransactionStrategie : ITransactionStrategie
     {

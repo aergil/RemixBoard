@@ -9,7 +9,7 @@ namespace RemixBoard.Core.Tests
     public class JobsSeekersTests
     {
         private static void MockWebRequest(string remixJson, string expressJson) {
-            var mockWebRequest = new Mock<WebRequestJSON>();
+            var mockWebRequest = new Mock<WebRequestJson>();
             mockWebRequest.Setup(x => x.Get(Constantes.RemixJobUri)).Returns(remixJson);
             mockWebRequest.Setup(x => x.Get(Constantes.ExpressBoardUri)).Returns(expressJson);
             JobsSeeker.Instance.WebRequest = mockWebRequest.Object;
@@ -17,7 +17,7 @@ namespace RemixBoard.Core.Tests
 
         [Test]
         public void JobsSeekerInterrogeLes2Sites() {
-            var mockWebRequest = new Mock<WebRequestJSON>();
+            var mockWebRequest = new Mock<WebRequestJson>();
             mockWebRequest.Setup(x => x.Get(Constantes.RemixJobUri)).Returns(string.Empty);
             mockWebRequest.Setup(x => x.Get(Constantes.ExpressBoardUri)).Returns(string.Empty);
             JobsSeeker.Instance.WebRequest = mockWebRequest.Object;

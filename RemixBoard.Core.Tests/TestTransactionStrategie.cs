@@ -1,5 +1,4 @@
 using NHibernate;
-using RemixBoard.Datas;
 using RemixBoard.Datas.Infrastructure;
 
 namespace RemixBoard.Core.Tests

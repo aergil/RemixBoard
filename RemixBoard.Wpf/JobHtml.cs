@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RemixBoard.Core;
+﻿using RemixBoard.Core;
 
 namespace RemixBoard.Wpf
 {

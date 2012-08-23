@@ -1,4 +1,4 @@
-namespace RemixBoard.Datas
+namespace RemixBoard.Datas.Infrastructure
 {
     public interface ITransactionStrategie {
         void Begin();

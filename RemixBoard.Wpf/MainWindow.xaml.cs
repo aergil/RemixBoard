@@ -27,7 +27,7 @@ namespace RemixBoard.Wpf
 
             ThreadStart start = delegate {
                                     var op = Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(RafraichirTout));
-                                    op.Completed += op_Completed;
+                                    op.Completed += Op_Completed;
                                 };
             new Thread(start).Start();
         }
@@ -37,7 +37,7 @@ namespace RemixBoard.Wpf
             AffichertousLesJobs();
         }
 
-        private void op_Completed(object sender, EventArgs e) {
+        private void Op_Completed(object sender, EventArgs e) {
             btRefresh.IsEnabled = true;
             stackPanel1.IsEnabled = true;
             Informations.End();
@@ -123,21 +123,27 @@ namespace RemixBoard.Wpf
         }
 
         private void JobTemplate_Titre_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            var labelTitre = ((Label) sender);
+            var webDetailJob = ((Job) labelTitre.DataContext).Url;
             try {
-                var labelTitre = ((Label) sender);
-                var webDetailJob = ((Job) labelTitre.DataContext).Url;
-                System.Diagnostics.Process.Start(webDetailJob);
+                if (!string.IsNullOrEmpty(webDetailJob))
+                    System.Diagnostics.Process.Start(webDetailJob);
             }
-            catch {}
+            catch {
+                Log.Error(this, "Erreur lors de l'ouverture de l'url " + webDetailJob, null);
+            }
         }
 
         private void JobTemplate_Entreprise_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+            var labelEntreprise = ((Label) sender);
+            var entrepriseWebSite = ((Job) labelEntreprise.DataContext).EntrepriseWebSite;
             try {
-                var labelEntreprise = ((Label) sender);
-                var entrepriseWebSite = ((Job) labelEntreprise.DataContext).EntrepriseWebSite;
-                System.Diagnostics.Process.Start(entrepriseWebSite);
+                if (!string.IsNullOrEmpty(entrepriseWebSite))
+                    System.Diagnostics.Process.Start(entrepriseWebSite);
             }
-            catch {}
+            catch {
+                Log.Error(this, "Erreur lors de l'ouverture de l'url " + entrepriseWebSite, null);
+            }
         }
 
         private void JobTemplate_Favori_Changed(object sender, RoutedEventArgs e) {
@@ -153,7 +159,7 @@ namespace RemixBoard.Wpf
             FiltrerAsync();
         }
 
-        private void tbMotsClefs_KeyUp(object sender, System.Windows.Input.KeyEventArgs e) {
+        private void TbMotsClefs_KeyUp(object sender, System.Windows.Input.KeyEventArgs e) {
             FiltrerAsync();
         }
 
@@ -161,7 +167,7 @@ namespace RemixBoard.Wpf
             RafraichirToutAsync();
         }
 
-        private void AfficherFavoris_checked(object sender, RoutedEventArgs e) {
+        private void AfficherFavoris_Checked(object sender, RoutedEventArgs e) {
             AfficherLesJobsFavorisAsync();
         }
 

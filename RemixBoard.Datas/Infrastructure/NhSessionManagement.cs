@@ -16,11 +16,9 @@ namespace RemixBoard.Datas.Infrastructure
         private static bool IsConfigurationFileValid {
             get {
                 var ass = Assembly.GetCallingAssembly();
-                if (ass.Location == null)
-                    return false;
-                var configInfo = new FileInfo(SerializedConfiguration);
+                var configInfo = new FileInfo(serializedConfiguration);
                 var assInfo = new FileInfo(ass.Location);
-                var configFileInfo = new FileInfo(ConfigFile);
+                var configFileInfo = new FileInfo(configFile);
                 if (configInfo.LastWriteTime < assInfo.LastWriteTime)
                     return false;
                 if (configInfo.LastWriteTime < configFileInfo.LastWriteTime)
@@ -43,7 +41,7 @@ namespace RemixBoard.Datas.Infrastructure
         public static void Initialize() {
             Configuration = LoadConfigurationFromFile();
             if (Configuration == null) {
-                Configuration = new Configuration().Configure(ConfigFile);
+                Configuration = new Configuration().Configure(configFile);
                 SaveConfigurationToFile(Configuration);
             }
 
@@ -51,7 +49,7 @@ namespace RemixBoard.Datas.Infrastructure
         }
 
         private static void SaveConfigurationToFile(Configuration configuration) {
-            using (var file = File.Open(SerializedConfiguration, FileMode.Create)) {
+            using (var file = File.Open(serializedConfiguration, FileMode.Create)) {
                 var bf = new BinaryFormatter();
                 bf.Serialize(file, configuration);
             }
@@ -61,7 +59,7 @@ namespace RemixBoard.Datas.Infrastructure
             if (IsConfigurationFileValid == false)
                 return null;
             try {
-                using (var file = File.Open(SerializedConfiguration, FileMode.Open)) {
+                using (var file = File.Open(serializedConfiguration, FileMode.Open)) {
                     var bf = new BinaryFormatter();
                     return bf.Deserialize(file) as Configuration;
                 }
@@ -71,8 +69,8 @@ namespace RemixBoard.Datas.Infrastructure
             }
         }
 
-        private const string SerializedConfiguration = "configurtion.serialized";
-        private const string ConfigFile = "hibernate.cfg.xml";
+        private const string serializedConfiguration = "configurtion.serialized";
+        private const string configFile = "hibernate.cfg.xml";
         private static ISession session;
         private static IStatelessSession statelessSession;
     }

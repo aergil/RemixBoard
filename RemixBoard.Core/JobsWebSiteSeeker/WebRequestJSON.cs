@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RemixBoard.Core.JobsWebSiteSeeker
 {
-    public class WebRequestJSON
+    public class WebRequestJson
     {
         public virtual string Get(string uri) {
             try {
@@ -16,12 +16,16 @@ namespace RemixBoard.Core.JobsWebSiteSeeker
 
                 var webResponse = webRequest.GetResponse();
 
-                string text;
-                using (var sr = new StreamReader(webResponse.GetResponseStream(), Encoding.UTF8)) {
-                    text = sr.ReadToEnd();
+                string fluxJson;
+                Stream stream = webResponse.GetResponseStream();
+                if(stream == null)
+                    throw new Exception("La réponse de la requète est nulle");
+
+                using (var sr = new StreamReader(stream, Encoding.UTF8)) {
+                    fluxJson = sr.ReadToEnd();
                 }
 
-                return text;
+                return fluxJson;
             }
             catch (Exception e) {
                 Log.Error(this, "WebRequestJson : Erreur lors de la récupération du flux JSON de " + uri, e);

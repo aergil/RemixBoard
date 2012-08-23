@@ -38,7 +38,7 @@ namespace RemixBoard.Core.Tests
             Assert.AreEqual(null, job.Expérience);
         }
         [Test]
-        public void SiExpérienceEgaleNONEAlorsEmpty()
+        public void SiExpérienceEgaleNoneAlorsEmpty()
         {
             var jobToken = JToken.Parse(@"{ ""experience"":""NONE""}");
 
@@ -96,7 +96,7 @@ namespace RemixBoard.Core.Tests
             Assert.AreEqual("study", job.Etudes);
         }
         [Test]
-        public void SiEtudesDemandéesEgalNONEAlorsEmpty()
+        public void SiEtudesDemandéesEgaleNoneAlorsEmpty()
         {
             var jobToken = JToken.Parse(@"{ ""study"":""NONE""}");
 
