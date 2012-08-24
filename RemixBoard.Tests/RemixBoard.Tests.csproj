@@ -8,8 +8,8 @@
     <ProjectGuid>{145B6AA2-1622-4DB8-B0C6-D5E9FB78250F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RemixBoard.Core.Tests</RootNamespace>
-    <AssemblyName>RemixBoard.Core.Tests</AssemblyName>
+    <RootNamespace>RemixBoard.Tests</RootNamespace>
+    <AssemblyName>RemixBoard.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

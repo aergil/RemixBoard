@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using RemixBoard.Core;
 using RemixBoard.Datas;
 using RemixBoard.Datas.Infrastructure;
 
-namespace RemixBoard.Core.Tests.Datas
+namespace RemixBoard.Tests.Datas
 {
     [TestFixture]
     public class NhEntrepotJobTests : NhibernateTestFixture

@@ -1,7 +1,7 @@
 using NHibernate;
 using RemixBoard.Datas.Infrastructure;
 
-namespace RemixBoard.Core.Tests.Datas
+namespace RemixBoard.Tests.Datas
 {
     public class TestTransactionStrategie : ITransactionStrategie
     {

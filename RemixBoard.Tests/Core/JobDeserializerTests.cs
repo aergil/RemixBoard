@@ -1,10 +1,11 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Newtonsoft.Json;
+using RemixBoard.Core;
 using RemixBoard.Core.JobsWebSiteSeeker;
 using log4net;
 
-namespace RemixBoard.Core.Tests.Core
+namespace RemixBoard.Tests.Core
 {
     [TestFixture]
     public class JobDeserializerTests

@@ -1,9 +1,10 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using RemixBoard.Core;
 using RemixBoard.Core.JobsWebSiteSeeker;
 
-namespace RemixBoard.Core.Tests.Core
+namespace RemixBoard.Tests.Core
 {
     [TestFixture]
     public class ExpressJobDeserializerTests
