@@ -14,7 +14,6 @@ namespace RemixBoard.Core.JobsWebSiteSeeker
             get { return Constantes.RemixJobUri; }
         }
 
-
         public override Job CreateJob(JToken jobToken) {
             var job = new Job();
 

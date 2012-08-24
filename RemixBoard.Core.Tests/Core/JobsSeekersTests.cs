@@ -3,7 +3,7 @@ using Moq;
 using NUnit.Framework;
 using RemixBoard.Core.JobsWebSiteSeeker;
 
-namespace RemixBoard.Core.Tests
+namespace RemixBoard.Core.Tests.Core
 {
     [TestFixture]
     public class JobsSeekersTests

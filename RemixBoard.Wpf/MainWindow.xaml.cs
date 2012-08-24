@@ -55,16 +55,20 @@ namespace RemixBoard.Wpf
         }
 
         private void AffichertousLesJobs() {
-            tbVille.IsEnabled = true;
-            tbContrat.IsEnabled = true;
-            tbMotsClefs.IsEnabled = true;
-            btRefresh.IsEnabled = true;
+            ActiverLeHeader(true);
+
+            JobListe.ItemsSource = Entrepots.Jobs.GetAll();
+        }
+
+        private void ActiverLeHeader(bool active) {
+            tbVille.IsEnabled = active;
+            tbContrat.IsEnabled = active;
+            tbMotsClefs.IsEnabled = active;
+            btRefresh.IsEnabled = active;
 
             tbVille.Text = String.Empty;
             tbContrat.Text = String.Empty;
             tbMotsClefs.Text = string.Empty;
-
-            JobListe.ItemsSource = Entrepots.Jobs.GetAll();
         }
 
         private void FiltrerAsync() {
@@ -89,24 +93,12 @@ namespace RemixBoard.Wpf
         }
 
         private void AfficherLesJobsFavoris() {
-            tbContrat.Text = String.Empty;
-            tbVille.Text = String.Empty;
-            tbMotsClefs.Text = string.Empty;
-
-            tbVille.IsEnabled = false;
-            tbContrat.IsEnabled = false;
-            btRefresh.IsEnabled = false;
-            tbMotsClefs.IsEnabled = false;
-
+            ActiverLeHeader(false);
             JobListe.ItemsSource = Entrepots.Jobs.GetByFavoris();
         }
 
 
-        private void VilleOuContrat_KeyUp(object sender, System.Windows.Input.KeyEventArgs e) {
-            FiltrerAsync();
-        }
-
-        private void TbMotsClefs_KeyUp(object sender, System.Windows.Input.KeyEventArgs e) {
+        private void Filtres_KeyUp(object sender, System.Windows.Input.KeyEventArgs e) {
             FiltrerAsync();
         }
 
@@ -125,8 +117,13 @@ namespace RemixBoard.Wpf
         private void DescriptionBrowser_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e) {
             if (e.Uri == null) return;
 
-            System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
-            e.Cancel = true;
+            try {
+                System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
+                e.Cancel = true;
+            }
+            catch {
+                Log.Error(this, "Erreur lors de l'ouverture de l'url " + e.Uri.AbsoluteUri, null);
+            }
         }
     }
 }

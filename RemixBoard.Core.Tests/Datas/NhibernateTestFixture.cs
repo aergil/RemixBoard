@@ -2,9 +2,9 @@ using NUnit.Framework;
 using RemixBoard.Datas;
 using RemixBoard.Datas.Infrastructure;
 
-namespace RemixBoard.Core.Tests
+namespace RemixBoard.Core.Tests.Datas
 {
-    public class NhibernateTests
+    public class NhibernateTestFixture
     {
         [TearDown]
         public void TearDown() {

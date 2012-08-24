@@ -10,7 +10,7 @@ using RemixBoard.Core;
 namespace RemixBoard.Wpf
 {
     /// <summary>
-    /// Interaction logic for JobTemplate.xaml
+    /// Affiche la liste des Jobs
     /// </summary>
     public partial class JobsListe : UserControl
     {

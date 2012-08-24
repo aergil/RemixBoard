@@ -18,7 +18,7 @@ namespace RemixBoard.Core
             set { dateDeCréation = value; }
         }
 
-        public virtual string Expérience {get; set; }
+        public virtual string Expérience { get; set; }
 
         public virtual string Etudes { get; set; }
         public virtual string Titre { get; set; }
@@ -66,6 +66,5 @@ namespace RemixBoard.Core
 
         private IList<string> tags = new List<string>();
         private DateTime dateDeCréation = Constantes.DefaultDateTime;
-
- }
+    }
 }

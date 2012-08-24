@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 
 namespace RemixBoard.Core.JobsWebSiteSeeker
 {
@@ -37,7 +36,6 @@ namespace RemixBoard.Core.JobsWebSiteSeeker
         }
 
         private static JobsSeeker instance;
-
         private IList<JobDeserializer> jobDeserializers;
         private WebRequestJson webRequest;
     }

@@ -17,8 +17,6 @@ namespace RemixBoard.Core
             set { exceptionLogger = value; }
         }
 
-        private static ILog exceptionLogger;
-
         public static void Info(object sender, string message) {
             if (Logged != null)
                 Logged(sender, new LogEventArgs(message));
@@ -34,6 +32,7 @@ namespace RemixBoard.Core
         }
 
         public static event LogEventHandler Logged;
+        private static ILog exceptionLogger;
     }
 
     public delegate void LogEventHandler(object sender, LogEventArgs args);

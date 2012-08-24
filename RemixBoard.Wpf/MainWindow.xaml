@@ -37,17 +37,17 @@
                     <TextBox  Style="{DynamicResource MotsClefsTextBox}"
                     HorizontalAlignment="Left"
                     Name="tbMotsClefs"   
-                    KeyUp="TbMotsClefs_KeyUp"  PreviewKeyDown="TbMotsClefs_KeyUp" 
+                    KeyUp="Filtres_KeyUp"  PreviewKeyDown="Filtres_KeyUp" 
                     Margin="382,0,0,5" />
                     <TextBox  Style="{DynamicResource VilleTextBox}"
                     HorizontalAlignment="Left"
                     Name="tbVille"   
-                    KeyUp="VilleOuContrat_KeyUp" PreviewKeyDown="VilleOuContrat_KeyUp" 
+                    KeyUp="Filtres_KeyUp" PreviewKeyDown="Filtres_KeyUp" 
                     Margin="6,0,0,5" />
                     <TextBox  Style="{DynamicResource ContratTextBox}" 
                     HorizontalAlignment="Left"
                     Name="tbContrat" 
-                    KeyUp="VilleOuContrat_KeyUp"  PreviewKeyDown="VilleOuContrat_KeyUp" 
+                    KeyUp="Filtres_KeyUp"  PreviewKeyDown="Filtres_KeyUp" 
                     Margin="196,0,0,5" />
 
                 </Grid>

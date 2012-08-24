@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using RemixBoard.Core.JobsWebSiteSeeker;
 
-namespace RemixBoard.Core.Tests
+namespace RemixBoard.Core.Tests.Core
 {
     [TestFixture]
     public class RemixJobDeserializerTests
@@ -11,7 +11,7 @@ namespace RemixBoard.Core.Tests
         private RemixJobDeserializer remixJobDeserializer = new RemixJobDeserializer();
 
         [Test]
-        public void JobvientDRemixJob()
+        public void JobProvientDeRemixJob()
         {
             var jobToken = JToken.Parse(@"{ }");
 
@@ -37,6 +37,7 @@ namespace RemixBoard.Core.Tests
             job = remixJobDeserializer.CreateJob(jobToken);
             Assert.AreEqual(null, job.Expérience);
         }
+        
         [Test]
         public void SiExpérienceEgaleNoneAlorsEmpty()
         {
@@ -60,7 +61,6 @@ namespace RemixBoard.Core.Tests
             var job = remixJobDeserializer.CreateJob(jobToken);
             Assert.AreEqual(Constantes.DefaultDateTime,job.DateDeCréation);
         }
-
 
         [Test]
         public void JobContientLeSiteWebDeEntreprise() {
@@ -86,8 +86,6 @@ namespace RemixBoard.Core.Tests
             Assert.AreEqual("une description", job.Description);
         }
 
-
-
         [Test]
         public void JobContientLesEtudesDemandées() {
             var jobToken = JToken.Parse(@"{ ""study"":""study""}");
@@ -95,6 +93,7 @@ namespace RemixBoard.Core.Tests
             var job = remixJobDeserializer.CreateJob(jobToken);
             Assert.AreEqual("study", job.Etudes);
         }
+        
         [Test]
         public void SiEtudesDemandéesEgaleNoneAlorsEmpty()
         {
@@ -140,7 +139,6 @@ namespace RemixBoard.Core.Tests
             var job = remixJobDeserializer.CreateJob(jobToken);
             Assert.AreEqual("Paris, France", job.Localisation);
         }
-
 
         [Test]
         public void JobContientDesTags() {

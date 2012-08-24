@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using RemixBoard.Core.JobsWebSiteSeeker;
 using log4net;
 
-namespace RemixBoard.Core.Tests
+namespace RemixBoard.Core.Tests.Core
 {
     [TestFixture]
     public class JobDeserializerTests

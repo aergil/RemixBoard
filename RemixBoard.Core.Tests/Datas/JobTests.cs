@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace RemixBoard.Core.Tests
+namespace RemixBoard.Core.Tests.Datas
 {
     [TestFixture]
     public class JobTests

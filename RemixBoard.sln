@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemixBoard.Wpf", "RemixBoar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemixBoard.Core", "RemixBoard.Core\RemixBoard.Core.csproj", "{0429F3DE-477F-4432-8719-8D76DAF18975}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemixBoard.Core.Tests", "RemixBoard.Core.Tests\RemixBoard.Core.Tests.csproj", "{145B6AA2-1622-4DB8-B0C6-D5E9FB78250F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemixBoard.Tests", "RemixBoard.Core.Tests\RemixBoard.Tests.csproj", "{145B6AA2-1622-4DB8-B0C6-D5E9FB78250F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemixBoard.Datas", "RemixBoard.Datas\RemixBoard.Datas.csproj", "{A1B40EC4-5B01-47A1-BECA-C6FBD28AF2A9}"
 EndProject

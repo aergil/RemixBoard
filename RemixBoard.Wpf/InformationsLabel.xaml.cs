@@ -7,7 +7,7 @@ using RemixBoard.Core;
 namespace RemixBoard.Wpf
 {
     /// <summary>
-    /// Interaction logic for InformationsLabel.xaml
+    /// Affiche les informations lors du chargement des données
     /// </summary>
     public partial class InformationsLabel : UserControl
     {
