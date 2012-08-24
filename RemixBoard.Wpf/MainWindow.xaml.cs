@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,7 +16,6 @@ namespace RemixBoard.Wpf
     {
         public MainWindow() {
             InitializeComponent();
-
             RafraichirToutAsync();
         }
 
@@ -25,27 +25,26 @@ namespace RemixBoard.Wpf
             DescriptionBrowser.Visibility = Visibility.Hidden;
             Informations.Start();
 
-            ThreadStart start = delegate {
-                                    var op = Dispatcher.BeginInvoke(DispatcherPriority.Loaded, new Action(RafraichirTout));
-                                    op.Completed += Op_Completed;
-                                };
-            new Thread(start).Start();
+            var backgroundWorker = new BackgroundWorker();
+            backgroundWorker.DoWork += BackgroundWorker_DoWork;
+            backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+            backgroundWorker.RunWorkerAsync();
         }
 
-        private void RafraichirTout() {
-            JobsSeeker.Instance.RefreshEntrepotJobs();
-            AffichertousLesJobs();
-        }
-
-        private void Op_Completed(object sender, EventArgs e) {
-            btRefresh.IsEnabled = true;
+        private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             stackPanel1.IsEnabled = true;
             Informations.End();
             DescriptionBrowser.Visibility = Visibility.Visible;
+
+            AffichertousLesJobs();
+        }
+
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e) {
+            JobsSeeker.Instance.RefreshEntrepotJobs();
         }
 
         private void AffichertousLesJobsAsync() {
-            ThreadStart start = () => Dispatcher.Invoke(DispatcherPriority.Loaded, new Action(AffichertousLesJobs));
+            ThreadStart start = () => Dispatcher.Invoke(DispatcherPriority.Input, new Action(AffichertousLesJobs));
             new Thread(start).Start();
         }
 
@@ -181,6 +180,7 @@ namespace RemixBoard.Wpf
             System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
             e.Cancel = true;
         }
+
 
         private StackPanel stackPanelWithFocus;
     }
