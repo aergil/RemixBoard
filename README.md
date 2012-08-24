@@ -8,13 +8,15 @@ Remix Board :
 - Annonces en favoris
 
 
-Architecture  :
-- Application :
-	RemixBoard.Wpf : Couche de présentation
-	RemixBoard.Core : Corps de l'application, avec récupération des flux JSON
-	RemixBoard.Datas : Implemenation de la couche de persistance : NHibernate, requetage au travers de NHibernate.Linq
-- Projets Annexes :
-	RemixBoard.Test : Tests du Core et de Datas
-	Setup : Installeur de l'application
+Architecture
+------------
+
+Application :
+- RemixBoard.Wpf : Couche de présentation
+- RemixBoard.Core : Corps de l'application, avec récupération des flux JSON
+- RemixBoard.Datas : Implemenation de la couche de persistance : NHibernate, requetage au travers de NHibernate.Linq
+Projets Annexes :
+- RemixBoard.Test : Tests du Core et de Datas
+- Setup : Installeur de l'application
 	
 	
