@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Threading;
 using RemixBoard.Core;
 using RemixBoard.Core.JobsWebSiteSeeker;
@@ -17,11 +16,18 @@ namespace RemixBoard.Wpf
         public MainWindow() {
             InitializeComponent();
             RafraichirToutAsync();
+
+            JobListe.AfficherDescription += AfficherDescription;
+        }
+
+        private void AfficherDescription(object sender, JobEventHandlerArgs args) {
+            var description = new JobHtml(args.Job).Description();
+            DescriptionBrowser.NavigateToString(description);
         }
 
         private void RafraichirToutAsync() {
             btRefresh.IsEnabled = false;
-            stackPanel1.IsEnabled = false;
+            JobListe.IsEnabled = false;
             DescriptionBrowser.Visibility = Visibility.Hidden;
             Informations.Start();
 
@@ -32,7 +38,7 @@ namespace RemixBoard.Wpf
         }
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
-            stackPanel1.IsEnabled = true;
+            JobListe.IsEnabled = true;
             Informations.End();
             DescriptionBrowser.Visibility = Visibility.Visible;
 
@@ -58,7 +64,7 @@ namespace RemixBoard.Wpf
             tbContrat.Text = String.Empty;
             tbMotsClefs.Text = string.Empty;
 
-            JobList.ItemsSource = Entrepots.Jobs.GetAll();
+            JobListe.ItemsSource = Entrepots.Jobs.GetAll();
         }
 
         private void FiltrerAsync() {
@@ -74,7 +80,7 @@ namespace RemixBoard.Wpf
 
         private void Filtrer(string contrat, string ville, string motsClefs) {
             var mots = motsClefs.Split(' ');
-            JobList.ItemsSource = Entrepots.Jobs.Filtrer(contrat, ville, mots);
+            JobListe.ItemsSource = Entrepots.Jobs.Filtrer(contrat, ville, mots);
         }
 
         private void AfficherLesJobsFavorisAsync() {
@@ -92,67 +98,9 @@ namespace RemixBoard.Wpf
             btRefresh.IsEnabled = false;
             tbMotsClefs.IsEnabled = false;
 
-            JobList.ItemsSource = Entrepots.Jobs.GetByFavoris();
+            JobListe.ItemsSource = Entrepots.Jobs.GetByFavoris();
         }
 
-        private void MettreAJourJobFavoriAsync(Job job) {
-            ThreadStart start = () => Dispatcher.Invoke(DispatcherPriority.Background, new Action<Job>(MettreAJourJobFavori), job);
-            new Thread(start).Start();
-        }
-
-        private void MettreAJourJobFavori(Job job) {
-            Entrepots.Jobs.Update(job);
-        }
-
-        private void AfficherDescription(Job job) {
-            var description = new JobHtml(job).Description();
-            DescriptionBrowser.NavigateToString(description);
-        }
-
-        private void JobTemplate_Selected(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-            var stackPanel = ((StackPanel) sender);
-            var job = ((Job) stackPanel.DataContext);
-
-            AfficherDescription(job);
-
-            if (stackPanelWithFocus != null)
-                stackPanelWithFocus.Style = (Style) (Resources["JobPanel"]);
-            stackPanel.Style = (Style) (Resources["JobPanelSelected"]);
-            stackPanelWithFocus = stackPanel;
-        }
-
-        private void JobTemplate_Titre_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-            var labelTitre = ((Label) sender);
-            var webDetailJob = ((Job) labelTitre.DataContext).Url;
-            try {
-                if (!string.IsNullOrEmpty(webDetailJob))
-                    System.Diagnostics.Process.Start(webDetailJob);
-            }
-            catch {
-                Log.Error(this, "Erreur lors de l'ouverture de l'url " + webDetailJob, null);
-            }
-        }
-
-        private void JobTemplate_Entreprise_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
-            var labelEntreprise = ((Label) sender);
-            var entrepriseWebSite = ((Job) labelEntreprise.DataContext).EntrepriseWebSite;
-            try {
-                if (!string.IsNullOrEmpty(entrepriseWebSite))
-                    System.Diagnostics.Process.Start(entrepriseWebSite);
-            }
-            catch {
-                Log.Error(this, "Erreur lors de l'ouverture de l'url " + entrepriseWebSite, null);
-            }
-        }
-
-        private void JobTemplate_Favori_Changed(object sender, RoutedEventArgs e) {
-            var checkBox = ((CheckBox) sender);
-            var job = (Job) checkBox.DataContext;
-            if (checkBox.IsChecked != null)
-                job.Favoris = checkBox.IsChecked.Value;
-
-            MettreAJourJobFavoriAsync(job);
-        }
 
         private void VilleOuContrat_KeyUp(object sender, System.Windows.Input.KeyEventArgs e) {
             FiltrerAsync();
@@ -180,8 +128,5 @@ namespace RemixBoard.Wpf
             System.Diagnostics.Process.Start(e.Uri.AbsoluteUri);
             e.Cancel = true;
         }
-
-
-        private StackPanel stackPanelWithFocus;
     }
 }

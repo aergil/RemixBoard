@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="RemixBoard.Wpf.JobsListe"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Core="clr-namespace:RemixBoard.Core;assembly=RemixBoard.Core" mc:Ignorable="d" 
+             >
+    <UserControl.Resources>
+
+        <Style x:Key="WebLinkLabel" TargetType="{x:Type Label}">
+            <Setter Property="Margin" Value="5,5,0,0" />
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="DimGray" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <TextBlock>
+                         <ContentPresenter />
+                        </TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Resources>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="TextDecorations" Value="Underline" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Style.Resources>
+        </Style>
+
+        <Style x:Key="TitreWebLinkLabel" TargetType="{x:Type Label}" BasedOn="{StaticResource WebLinkLabel}">
+            <Setter Property="Foreground" Value="MediumBlue" />
+        </Style>
+
+
+        <Style x:Key="JobPanel" TargetType="{x:Type StackPanel}">
+            <Style.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="DimGray" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="#EFEFEF"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="WhiteSmoke" />
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="JobPanelSelected" TargetType="{x:Type StackPanel}">
+            <Setter Property="Background" Value="Snow"/>
+        </Style>
+
+
+        <DataTemplate x:Key="TagTemplate">
+            <Label Content="{Binding}" FontStyle="Italic"    />
+        </DataTemplate>
+
+        <DataTemplate x:Key="JobTemplate" DataType="Core:Job">
+            <StackPanel  Style="{DynamicResource JobPanel}" 
+                         Orientation="Vertical" HorizontalAlignment="Stretch" Margin="1,1,1,1" 
+                         MouseLeftButtonDown="JobTemplate_Selected" >
+                <DockPanel HorizontalAlignment="Stretch">
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                        <Label  Content="{Binding Origine}" HorizontalAlignment="Left"  />
+                        <CheckBox  IsChecked="{Binding Favoris}" 
+                                   ToolTip="Favori" Margin="0,5,0,0" 
+                                   Checked="JobTemplate_Favori_Changed"
+                                   Unchecked="JobTemplate_Favori_Changed"/>
+                        <Label Style="{DynamicResource TitreWebLinkLabel}"
+                                   Content="{Binding Titre}" 
+                                   HorizontalAlignment="Right" 
+                                   MouseDown="JobTemplate_Titre_MouseDown" />
+                    </StackPanel>
+                    <Label  Content="{Binding TypeDeContrat}" DockPanel.Dock="Right" HorizontalAlignment="Right" />
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Stretch">
+                    <Label  Style="{DynamicResource WebLinkLabel}"
+                            Content="{Binding Entreprise}"  
+                            DockPanel.Dock="Left" HorizontalAlignment="Left" 
+                            MouseDown="JobTemplate_Entreprise_MouseDown"  />
+                    <Label  Content="{Binding Localisation}" ContentStringFormat="({0})" DockPanel.Dock="Left" HorizontalAlignment="Left" />
+                    <Label  Content="{Binding DateDeCréation}" ContentStringFormat="dd MMM yyyy" Language="Fr-fr"  DockPanel.Dock="Right" HorizontalAlignment="Right" />
+                </DockPanel>
+
+                <StackPanel  Name="TagPanel" Orientation="Horizontal" HorizontalAlignment="Stretch" FlowDirection="LeftToRight"   >
+                    <ItemsControl Name="JobList" ItemsSource="{Binding Tags}"  ItemTemplate="{StaticResource TagTemplate}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <StackPanel HorizontalAlignment="Stretch" FlowDirection="LeftToRight"  Name="stackPanel1" VerticalAlignment="Stretch" CanVerticallyScroll="True">
+        <ItemsControl Name="JobList"   ItemTemplate="{StaticResource JobTemplate}" FontSize="11" HorizontalAlignment="Stretch" />
+    </StackPanel>
+</UserControl>
