@@ -34,7 +34,9 @@ namespace RemixBoard.Datas
 
             foreach (string mot in mots) {
                 var temp = mot;
-                predicate = predicate.Or(p => p.Description.Contains(temp) || p.Titre.Contains(temp));
+                predicate = predicate.Or(p => p.Description.Contains(temp) 
+                                            || p.Titre.Contains(temp) 
+                                            || p.Tags.Any(t => t.Contains(temp)));
             }
             return query.Where(predicate);
         }

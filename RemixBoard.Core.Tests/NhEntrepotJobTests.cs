@@ -161,6 +161,31 @@ namespace RemixBoard.Core.Tests
         }
 
         [Test]
+        public void LesMotsClefsPortentSurLesTags()
+        {
+            var jobNonPertinent1 = new Job { Titre = "job Non Pertinent 1", Localisation = "Bordeaux", TypeDeContrat = "CDI", Description = " une description simple" };
+            Entrepots.Jobs.Add(jobNonPertinent1);
+
+            var jobAttendu1 = new Job { Titre = "job attendu", Localisation = "Bordeaux", TypeDeContrat = "CDD", Description = " une description" , 
+                                        Tags = new List<string>(){"tag1", "mot"}};
+            Entrepots.Jobs.Add(jobAttendu1);
+
+            var jobAttendu2 = new Job { Titre = "job attendu 2", Localisation = "Bordeaux", TypeDeContrat = "CDD", Description = " une description",
+                                        Tags = new List<string>(){"tag1", "motclef"}};
+            Entrepots.Jobs.Add(jobAttendu2);
+
+            var jobNonPertinent2 = new Job { Titre = "job Non Pertinent 2", Localisation = "Bordeaux", TypeDeContrat = "CDI",
+                                             Tags = new List<string>() { "tag1", "tag2" }};
+            Entrepots.Jobs.Add(jobNonPertinent2);
+
+            var jobFiltrés = NhEntrepotJobs.JobQueryable.FiltrerParMotsClefs(new[] { "clef", "mot" }).ToList();
+            Assert.IsFalse(jobFiltrés.Contains(jobNonPertinent1));
+            Assert.IsFalse(jobFiltrés.Contains(jobNonPertinent2));
+            Assert.IsTrue(jobFiltrés.Contains(jobAttendu1));
+            Assert.IsTrue(jobFiltrés.Contains(jobAttendu2));
+        }
+
+        [Test]
         public void LesMotsClefsPortentSurLeTitre()
         {
             var jobNonPertinent1 = new Job { Titre = "job Non Pertinent 1", Localisation = "Bordeaux", TypeDeContrat = "CDI" };
