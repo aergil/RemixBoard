@@ -119,7 +119,7 @@ namespace RemixBoard.Core.Tests
             var job2 = new Job { Titre = "Scrum Master", Localisation = "Paris" };
             Entrepots.Jobs.Add(job2);
 
-            Assert.AreEqual("Scrum Master", NhEntrepotJobs.JobQueryable.FiltrerParVille("Paris").First().Titre);
+            Assert.AreEqual("Scrum Master", NhEntrepotJobs.JobQueryable.FiltrerParVille("Paris").ToList().First().Titre);
         }
 
         [Test]
@@ -209,7 +209,7 @@ namespace RemixBoard.Core.Tests
             var job2 = new Job { Titre = "Scrum Master", TypeDeContrat = "CDD" };
             Entrepots.Jobs.Add(job2);
 
-            Assert.AreEqual("Scrum Master", NhEntrepotJobs.JobQueryable.FiltrerParContrat("CDD").First().Titre);
+            Assert.AreEqual("Scrum Master", NhEntrepotJobs.JobQueryable.FiltrerParContrat("CDD").ToList().First().Titre);
         }
 
         [Test]

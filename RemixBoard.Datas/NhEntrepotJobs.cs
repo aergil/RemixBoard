@@ -51,8 +51,8 @@ namespace RemixBoard.Datas
             set { transactionStrategie = value; }
         }
 
-        public static INHibernateQueryable<Job> JobQueryable {
-            get { return NhSessionManagement.Session.Linq<Job>(); }
+        public static IQueryable<Job> JobQueryable {
+            get { return NhSessionManagement.Session.Query<Job>(); }
         }
 
         #region IEntrepotJobs Members

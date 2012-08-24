@@ -5,7 +5,7 @@
         NHibernate.Connection.DriverConnectionProvider
       </property>
       <property name="dialect">
-        NHibernate.Dialect.MsSqlCeDialect
+        NHibernate.Dialect.MsSqlCe40Dialect
       </property>
       <property name="connection.driver_class">
         NHibernate.Driver.SqlServerCeDriver
@@ -14,7 +14,7 @@
         Data Source=../../../RemixBoard.Wpf/RemixBoardDataBase.sdf; Password=''
       </property>
       <property name='proxyfactory.factory_class'>
-        NHibernate.ByteCode.Castle.ProxyFactoryFactory, NHibernate.ByteCode.Castle
+        NHibernate.Bytecode.DefaultProxyFactoryFactory
       </property>
       <property name ='show_sql'>true</property>
       <mapping assembly="RemixBoard.Datas" />
