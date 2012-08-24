@@ -69,7 +69,7 @@ namespace RemixBoard.Datas.Infrastructure
             }
         }
 
-        private const string serializedConfiguration = "configurtion.serialized";
+        private const string serializedConfiguration = "configuration.serialized";
         private const string configFile = "hibernate.cfg.xml";
         private static ISession session;
         private static IStatelessSession statelessSession;
