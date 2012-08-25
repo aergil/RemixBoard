@@ -11,6 +11,10 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemixBoard.Tests", "RemixBoard.Tests\RemixBoard.Tests.csproj", "{145B6AA2-1622-4DB8-B0C6-D5E9FB78250F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlServerCePrivate", "SqlServerCePrivate\SqlServerCePrivate.csproj", "{8A4BEE44-B957-4D5D-BF76-B6C0EDC36A47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SetupProjects", "SetupProjects", "{B1E78006-FA2B-438F-9B81-DE2089D45E3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,8 +71,22 @@ Global
 		{145B6AA2-1622-4DB8-B0C6-D5E9FB78250F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{145B6AA2-1622-4DB8-B0C6-D5E9FB78250F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{145B6AA2-1622-4DB8-B0C6-D5E9FB78250F}.Release|x86.ActiveCfg = Release|Any CPU
+		{8A4BEE44-B957-4D5D-BF76-B6C0EDC36A47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A4BEE44-B957-4D5D-BF76-B6C0EDC36A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A4BEE44-B957-4D5D-BF76-B6C0EDC36A47}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8A4BEE44-B957-4D5D-BF76-B6C0EDC36A47}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8A4BEE44-B957-4D5D-BF76-B6C0EDC36A47}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8A4BEE44-B957-4D5D-BF76-B6C0EDC36A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A4BEE44-B957-4D5D-BF76-B6C0EDC36A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A4BEE44-B957-4D5D-BF76-B6C0EDC36A47}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8A4BEE44-B957-4D5D-BF76-B6C0EDC36A47}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8A4BEE44-B957-4D5D-BF76-B6C0EDC36A47}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8A4BEE44-B957-4D5D-BF76-B6C0EDC36A47} = {B1E78006-FA2B-438F-9B81-DE2089D45E3D}
+		{2403A286-4B2F-4781-95B0-A1071EE6B07B} = {B1E78006-FA2B-438F-9B81-DE2089D45E3D}
 	EndGlobalSection
 EndGlobal
